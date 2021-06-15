@@ -6,7 +6,9 @@ const PokeDetailPage = () => {
   return (
     <PageContainer>
         <HeaderContainer />
-        Estou na PokeDetail
+        <div>
+          Informacoes
+        </div>
     </PageContainer>
   );
 }
