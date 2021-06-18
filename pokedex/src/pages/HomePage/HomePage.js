@@ -1,47 +1,57 @@
-import React, { useState, useEffect } from 'react';
-import HeaderContainer from '../../components/HeaderContainer';
-import CardContainer from '../../components/CardContainer';
-import { PageContainer } from '../../GlobalStyles';
-import axios from 'axios';
-import { baseURL } from '../../constants/baseURL';
+import React from "react";
+import HeaderContainer from "../../components/HeaderContainer/HeaderContainer";
+import CardContainer from "../../components/CardContainer/CardContainer";
+import { MainContainer, PageContainer } from "../../GlobalStyles";
 
+const HomePage = (props) => {
+  const { allPokeInfo } = props
+  const { pokedex, setPokedex } = props
 
-const HomePage = () => {
-  const [allPokemons, setAllPokemons] = useState([]);
-  const pokeUrls = [];
-
-  useEffect(() => {
-    const url = `${baseURL}/pokemon?limit=3&offset=0`;
-
-    axios
-    .get(url)
-    .then((res) => {
-      setAllPokemons(res.data.results);
-    })
-    .catch((err) => {
-      console.log(err);
+  const addPokemonToPokedex = (pokemonToAdd) => {
+    const index = pokedex.findIndex((pokemonInPokedex) => {
+      if (pokemonInPokedex.id === pokemonToAdd.id) {
+        return true;
+      } else {
+        return false;
+      }
     });
 
-  }, []);
+    if (index === -1) {
+      const pokedexCopy = [...pokedex, pokemonToAdd];
 
+      const indexPokemonRemoved = allPokeInfo.findIndex((pokemon) => {
+        if (pokemon.id === pokemonToAdd.id) {
+          return true;
+        } else {
+          return false;
+        }
+      })
 
-  const renderPokeCards = allPokemons && allPokemons.map((pokemon) => {
-    pokeUrls.push(pokemon.url);
-    return (
-      <div key={pokemon.name}>
+      allPokeInfo.splice(indexPokemonRemoved,1)
+
+      setPokedex(pokedexCopy);
+    };
+  };
+
+  const renderPokeCards =
+    allPokeInfo[0] &&
+    allPokeInfo.map((pokemon) => {
+      return (
         <CardContainer
-          pokeUrls={pokeUrls}
-        />
-      </div>
-    );
-  });
+          key={pokemon.id}
+          pokemon={pokemon}
+          addPokemonToPokedex={addPokemonToPokedex}
+        />);
+    });
 
   return (
     <PageContainer>
       <HeaderContainer />
-      {renderPokeCards}
+      <MainContainer>
+        {renderPokeCards}
+      </MainContainer>
     </PageContainer>
   );
-}
+};
 
 export default HomePage;
