@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import HeaderContainer from "../../components/HeaderContainer/HeaderContainer";
 import CardContainer from "../../components/CardContainer/CardContainer";
 import { MainContainer, PageContainer } from "../../GlobalStyles";
+import GlobalStateContext from "../../global/GlobalStateContext";
 
-const HomePage = (props) => {
-  const { allPokeInfo } = props
-  const { pokedex, setPokedex } = props
+const HomePage = () => {
+  const { allPokeInfo, pokedex, setPokedex } = useContext(GlobalStateContext);
 
   const addPokemonToPokedex = (pokemonToAdd) => {
     const index = pokedex.findIndex((pokemonInPokedex) => {
@@ -27,9 +27,12 @@ const HomePage = (props) => {
         }
       })
 
-      allPokeInfo.splice(indexPokemonRemoved,1)
+      allPokeInfo.splice(indexPokemonRemoved, 1)
+      const orderedPokedex = pokedexCopy.sort((a, b) => {
+        return a.id - b.id;
+      })
 
-      setPokedex(pokedexCopy);
+      setPokedex(orderedPokedex);
     };
   };
 

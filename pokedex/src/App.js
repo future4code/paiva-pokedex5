@@ -1,5 +1,6 @@
 import React from 'react';
-import Router from './routes/Router'
+import Router from './routes/Router';
+import GlobalState from "./global/GlobalState";
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
@@ -11,10 +12,10 @@ const GlobalStyle = createGlobalStyle`
 
 function App() {
   return (
-    <div>
+    <GlobalState>
       <GlobalStyle />
       <Router />
-    </div>
+    </GlobalState>
     
   );
 }

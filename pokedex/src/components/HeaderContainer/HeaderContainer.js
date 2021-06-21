@@ -5,19 +5,13 @@ import {
   goToPokedexPage,
   previousPage
 } from "../../routes/Coordinator";
-import styled from "styled-components";
-import { sixthColor, seventhColor } from "../../constants/Colors";
-import { useParams } from 'react-router-dom'
-
-const HeaderStyle = styled.div`
-  color: ${seventhColor};
-  background-color: ${sixthColor};
-`;
+import { useParams } from 'react-router-dom';
+import { HeaderStyle, ButtonContainer } from './styled';
 
 const HeaderContainer = () => {
   const history = useHistory();
   const pathname = history.location.pathname;
-  const pathParams = useParams()
+  const pathParams = useParams();
 
   const renderHeaderContainer = () => {
     switch (pathname) {
@@ -51,14 +45,16 @@ const HeaderContainer = () => {
         return (
           <div>
             <h1>POKEDETAILS</h1>
-            <button
-              onClick={() => {
-                previousPage(history);
-              }}
-            >
-              Voltar
-            </button>
-            <button>Adicionar/Remover</button>
+            <ButtonContainer>
+              <button
+                onClick={() => {
+                  previousPage(history);
+                }}
+              >
+                Voltar
+              </button>
+              <button>Adicionar/Remover</button>
+            </ButtonContainer>
           </div>
         );
       default:

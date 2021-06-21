@@ -7,7 +7,7 @@ const useRequestedPokeInfo = (initialState) => {
 
     const getPokeInfo = () => {
         const copyPokeInfo = [];
-        const qttPokemons = 3;
+        const qttPokemons = 20;
 
         for (let i = 1; i < qttPokemons + 1; i++) {
             const urlPokemon = `${baseURL}/pokemon/${i}`;

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import backgroundImage from "./img/backgroundImage.jpg";
 
 export const PageContainer = styled.div`
   height: 100vh;
@@ -8,7 +7,11 @@ export const PageContainer = styled.div`
 `;
 
 export const MainContainer = styled.div`
-  background-image: url(${backgroundImage});
-  background-size: 100vw 90.5vh;
-  background-repeat: no-repeat;
+  background-color: lightblue;
+
+  width: 100vw;
+  height: 92vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 `;
