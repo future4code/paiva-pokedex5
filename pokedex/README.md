@@ -1,7 +1,3 @@
-## Projeto POKEDEX
-Este é um projeto de FrontEnd Web utilizando React.js
-
-<<<<<<< HEAD
 ## Sobre
 
 Projeto básico de Pokedex de Pokemons.
@@ -50,4 +46,3 @@ O que não funciona:
 - Não implementado botão de adicionar/remover dentro da tela de detalhes;
 - Não implementado informações de status, tipo e movimentos do pokemon em detalhes;
 - Estilização não implementada.
->>>>>>> b4e4fea2c8e56b610085e569531552c95f437dbd
